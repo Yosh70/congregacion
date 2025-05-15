@@ -1,4 +1,5 @@
 import About from "./pages/About";
+import Acomodadores from "./pages/Acomodadores";
 import Error404 from "./pages/Error404";
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -10,6 +11,10 @@ const Rutas = () => {
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/sobre-nosotros" element={<About></About>}></Route>
+          <Route
+            path="/acomodadores"
+            element={<Acomodadores></Acomodadores>}
+          ></Route>
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>

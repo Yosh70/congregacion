@@ -1,5 +1,9 @@
 const Acomodadores = () => {
-  return <div>Acomodadores</div>;
+  return (
+    <>
+      <div>Acomodadores</div>
+    </>
+  );
 };
 
 export default Acomodadores;
