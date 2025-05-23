@@ -1,5 +1,4 @@
-import * as React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import {
   Box,
   CssBaseline,
@@ -19,7 +18,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import DescriptionIcon from "@mui/icons-material/Description";
 import LayersIcon from "@mui/icons-material/Layers";
-import Dashboard from "./pages/Dashboard";
 
 const drawerWidth = 240;
 
@@ -62,28 +60,6 @@ const navigationItems = [
   },
 ];
 
-function DashboardContent({ pathname }: { pathname: string }) {
-  return (
-    <Box
-      sx={{
-        p: 3,
-        border: "1px solid grey",
-        borderRadius: 2,
-        textAlign: "center",
-        flexGrow: 1,
-        bgcolor: "background.paper",
-      }}
-    >
-      <Typography variant="h5" gutterBottom>
-        Dashboard content for {pathname}
-      </Typography>
-      <Typography variant="body1" color="text.secondary">
-        Aquí puedes mostrar el contenido dinámico correspondiente a la ruta.
-      </Typography>
-    </Box>
-  );
-}
-
 function NavigationList() {
   return (
     <List>
@@ -104,7 +80,7 @@ function NavigationList() {
         }
         if (item.type === "item" && !item.children) {
           return (
-            <ListItem button key={index} component={Link} to={item.to}>
+            <ListItem key={index} component={Link} to={item.to as string}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.title} />
             </ListItem>
@@ -120,7 +96,6 @@ function NavigationList() {
               <List component="div" disablePadding>
                 {item.children.map((child, i) => (
                   <ListItem
-                    button
                     key={i}
                     component={Link}
                     to={child.to}
@@ -161,75 +136,53 @@ const theme = createTheme({
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <Box sx={{ display: "flex" }}>
-          <CssBaseline />
-          <Drawer
-            variant="permanent"
-            sx={{
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <Drawer
+          variant="permanent"
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            [`& .MuiDrawer-paper`]: {
               width: drawerWidth,
-              flexShrink: 0,
-              [`& .MuiDrawer-paper`]: {
-                width: drawerWidth,
-                boxSizing: "border-box",
-              },
-            }}
-          >
-            <Toolbar>
-              <Typography variant="h6" noWrap component="div">
-                Mi Dashboard
-              </Typography>
-            </Toolbar>
-            <Divider />
-            <NavigationList />
-          </Drawer>
+              boxSizing: "border-box",
+            },
+          }}
+        >
+          <Toolbar>
+            <Typography variant="h6" noWrap component="div">
+              Mi Dashboard
+            </Typography>
+          </Toolbar>
+          <Divider />
+          <NavigationList />
+        </Drawer>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            bgcolor: "background.default",
+            p: 3,
+            minHeight: "100vh",
+          }}
+        >
+          <Toolbar />
+
           <Box
-            component="main"
             sx={{
-              flexGrow: 1,
-              bgcolor: "background.default",
               p: 3,
-              minHeight: "100vh",
+              border: "1px solid grey",
+              borderRadius: 2,
+              textAlign: "center",
+              flexGrow: 1,
+              bgcolor: "background.paper",
             }}
           >
-            <Toolbar />
-            <Routes>
-              <Route
-                path="/"
-                element={<DashboardContent pathname="/dashboard" />}
-              />
-              <Route
-                path="/dashboard"
-                element={<Dashboard pathname="/dashboard" />}
-              />
-              <Route
-                path="/orders"
-                element={<DashboardContent pathname="/orders" />}
-              />
-              <Route
-                path="/reports"
-                element={<DashboardContent pathname="/reports" />}
-              />
-              <Route
-                path="/reports/sales"
-                element={<DashboardContent pathname="/reports/sales" />}
-              />
-              <Route
-                path="/reports/traffic"
-                element={<DashboardContent pathname="/reports/traffic" />}
-              />
-              <Route
-                path="/integrations"
-                element={<DashboardContent pathname="/integrations" />}
-              />
-              <Route
-                path="*"
-                element={<Typography>No se encontró la página</Typography>}
-              />
-            </Routes>
+            {/* Contenido dinamico */}
+            <Outlet />
           </Box>
         </Box>
-      </Router>
+      </Box>
     </ThemeProvider>
   );
 }
