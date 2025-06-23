@@ -6,7 +6,7 @@ import App from "./App";
 import Error404 from "./pages/Error404";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import Orders from "./pages/Orders";
+import Acomodadores from "./pages/Acomodadores";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/orders",
-        element: <Orders />,
+        path: "/acomodadores",
+        element: <Acomodadores />,
         errorElement: <Error404 />,
       },
     ],

@@ -6,8 +6,8 @@ function Copyright() {
   return (
     <Typography variant="body2" sx={{ color: "text.secondary", mt: 1 }}>
       {"Copyright © "}
-      <Link color="text.secondary" href="https://mui.com/">
-        Sitemark
+      <Link color="text.secondary" href="https://google.com/">
+        Santa Elena
       </Link>
       &nbsp;
       {new Date().getFullYear()}
@@ -18,7 +18,14 @@ function Copyright() {
 const Footer = () => {
   return (
     <>
-      <div style={{ border: "1px solid blue" }}>
+      <div
+        style={{
+          border: "1px solid blue",
+          position: "fixed",
+          width: "100%",
+          bottom: "0",
+        }}
+      >
         <Divider />
         <footer>
           <p>Footer Ejemplo</p>

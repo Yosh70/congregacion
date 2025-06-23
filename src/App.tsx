@@ -13,25 +13,26 @@ import {
   createTheme,
   ThemeProvider,
 } from "@mui/material";
-import DashboardIcon from "@mui/icons-material/Dashboard";
+import GroupIcon from "@mui/icons-material/Group";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import DescriptionIcon from "@mui/icons-material/Description";
 import LayersIcon from "@mui/icons-material/Layers";
+import Footer from "./components/Footer";
 
 const drawerWidth = 240;
 
 const navigationItems = [
-  { type: "header", title: "Main items" },
+  { type: "header", title: "Menu" },
   {
     type: "item",
-    to: "/dashboard",
-    title: "Dashboard",
-    icon: <DashboardIcon />,
+    to: "/acomodadores",
+    title: "Acomodadores",
+    icon: <GroupIcon />,
   },
   { type: "item", to: "/orders", title: "Orders", icon: <ShoppingCartIcon /> },
   { type: "divider" },
-  { type: "header", title: "Analytics" },
+  { type: "header", title: "Extras" },
   {
     type: "item",
     to: "/reports",
@@ -151,7 +152,7 @@ export default function App() {
         >
           <Toolbar>
             <Typography variant="h6" noWrap component="div">
-              Mi Dashboard
+              <Link to={"/dashboard"}>Congregación</Link>
             </Typography>
           </Toolbar>
           <Divider />
@@ -162,12 +163,11 @@ export default function App() {
           sx={{
             flexGrow: 1,
             bgcolor: "background.default",
-            p: 3,
+            p: 0,
             minHeight: "100vh",
           }}
         >
           <Toolbar />
-
           <Box
             sx={{
               p: 3,
@@ -181,6 +181,7 @@ export default function App() {
             {/* Contenido dinamico */}
             <Outlet />
           </Box>
+          <Footer></Footer>
         </Box>
       </Box>
     </ThemeProvider>

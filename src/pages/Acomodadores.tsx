@@ -1,7 +1,11 @@
+import { Typography } from "@mui/material";
+import AcomodadoresTable from "../components/AcomodadoresTable";
+
 const Acomodadores = () => {
   return (
     <>
-      <div>Acomodadores</div>
+      <Typography variant="h4">Acomodadores</Typography>
+      <AcomodadoresTable></AcomodadoresTable>
     </>
   );
 };
